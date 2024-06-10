@@ -2,22 +2,22 @@ import os
 from exif import Image
 import Model
 
+
 dirs = []
 
 while True:
     pd = str(input("Photo Directory or [E]nd: "))
     
-
     if pd != "e" and pd != "E":
         
         try:
-            pd_frameSize = int(input("Frame Size in this folder: " + Model.Folder.fs_options + "Frame Size in this folder: "))
+            pd_frameSize = int(input("Frame Size in this folder: " + Model.PreConfig.fs_options + "Frame Size in this folder: "))
 
         except:
             input("Unsupported Frame Size")
             exit()
 
-        if pd_frameSize in Model.Folder.frameSizes:
+        if pd_frameSize in Model.PreConfig.frameSizes:
             mf = Model.Folder()
             mf.path = pd
             mf.frameSize = pd_frameSize
@@ -26,9 +26,14 @@ while True:
 
         else:
             print("Unsupported Frame Size")
+            exit()
 
     elif pd == "e" or pd == "E":
         break
+
+    else:
+        input("Unsupported Inputs")
+        exit()
 
 
 for d in dirs:
