@@ -4,11 +4,10 @@ class PreConfig:
     # Equivalent Focal Length
     efl = {} # 用numpy 2d array做吧
 
+
 class Folder:
     path = ""
     frameSize = ""
-
-    
 
 
 class Photo:
