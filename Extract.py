@@ -5,12 +5,29 @@ import Model
 dirs = []
 
 while True:
-    key = str(input("Photo Directory or [E]nd: "))
+    pd = str(input("Photo Directory or [E]nd: "))
+    
 
-    if key != "e" and key != "E":
-        dirs.append(key)
+    if pd != "e" and pd != "E":
+        
+        try:
+            pd_frameSize = int(input("Frame Size in this folder: " + Model.Folder.fs_options + "Frame Size in this folder: "))
 
-    elif key == "e" or key == "E":
+        except:
+            input("Unsupported Frame Size")
+            exit()
+
+        if pd_frameSize in Model.Folder.frameSizes:
+            mf = Model.Folder()
+            mf.path = pd
+            mf.frameSize = pd_frameSize
+
+            dirs.append(mf)
+
+        else:
+            print("Unsupported Frame Size")
+
+    elif pd == "e" or pd == "E":
         break
 
 
