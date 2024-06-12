@@ -2,19 +2,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-plt.style.use('_mpl-gallery')
+def SortDict(fls:dict):
+    kl = []
+    vl = []
+    kl = sorted(fls.keys())
+    for k in kl:
+        vl.append(fls[k])
+    
+    return kl, vl
 
-def Bar(fls:dict):
 
-    x = np.arange(0, 600, 1)
-    y = list(fls.values())
+def Bar(x:list, y:list):
+   plt.style.use('_mpl-gallery')
 
-    # plot
-    fig, ax = plt.subplots()
+   fig, ax = plt.subplots(figsize=(5, 2.7), layout='constrained')
+   ax.bar(x, y, width=1, edgecolor="white", linewidth=0.7)
+   ax.set_xlabel('Focal Length')
 
-    ax.bar(x, y, width=1, edgecolor="white", linewidth=0.7)
+   plt.show()
 
-    ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
-        ylim=(0, 8), yticks=np.arange(1, 8))
 
-    plt.show()
+if __name__ == "__main__":
+    pass

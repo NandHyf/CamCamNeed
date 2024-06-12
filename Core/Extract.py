@@ -27,7 +27,7 @@ def GetFolders() -> dict:
             exit()
 
 
-def getFls(dirs:dict) -> dict:
+def GetFls(dirs:dict) -> dict:
     fls = {}
 
     for dk in dirs.keys():
@@ -61,5 +61,9 @@ def getFls(dirs:dict) -> dict:
 
         except FileNotFoundError:
             print("Worng Path: ", dir)
-
+    
+    print(fls)
     return fls
+
+if __name__ == "__main__":
+    GetFls(GetFolders())
