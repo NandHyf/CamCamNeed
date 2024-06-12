@@ -4,7 +4,7 @@ class PreConfig:
         "1" : 1.0,
         "2" : 1.5,
         "3" : 1.6,
-        "4" : 2,
+        "4" : 2.0,
         "5" : 1.5
     }
     fs_options = "\n[0]:4433 Medium Format(0.8x) \n[1]:Full Frame(1.0x) \n[2]:APS-C(1.5x) \n[3]:APS-C(1.6x) \n[4]:M43(2.0x) \n[5]:M43(1.5x)"

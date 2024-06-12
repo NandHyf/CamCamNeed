@@ -41,7 +41,6 @@ def GetFls(dirs:dict) -> dict:
                         my_image = Image(image_file)
                 except:
                     print("Worng format:", p)
-                    break
 
                 if my_image.has_exif == True:
                     mp = Model.Photo()
@@ -55,9 +54,13 @@ def GetFls(dirs:dict) -> dict:
                     
                     elif mp.focal_length_in_35mm_film in fls.keys():
                         fls[mp.focal_length_in_35mm_film] += 1
+
+                    # unnecessary print
+                    print(p, my_image.has_exif, mp.focal_length, mp.focal_length_in_35mm_film)
+
+                elif my_image.has_exif == False:
+                    print(p, my_image.has_exif)
                 
-                # unnecessary print
-                print(p, my_image.has_exif, mp.focal_length, mp.focal_length_in_35mm_film)
 
         except FileNotFoundError:
             print("Worng Path: ", dir)
