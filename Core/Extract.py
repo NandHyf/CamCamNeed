@@ -3,50 +3,63 @@ from exif import Image
 import Model
 
 
-dirs = []
+def GetFolders() -> dict:
+    dirs = {}
 
-while True:
-    pd = str(input("Photo Directory or [E]nd: "))
-    
-    if pd != "e" and pd != "E":
+    while True:
+        pd = str(input("Photo Directory or [E]nd: "))
         
-        try:
-            pd_frameSize = int(input("Frame Size in this folder: " + Model.PreConfig.fs_options + "Frame Size in this folder: "))
+        if pd != "e" and pd != "E":
+            
+            pd_frameSize = str(input("Frame Size in this folder: " + Model.PreConfig.fs_options + "\nFrame Size in this folder: "))
 
-        except:
-            input("Unsupported Frame Size")
-            exit()
+            if pd_frameSize in Model.PreConfig.frameSizes:
+                dirs[pd] = Model.PreConfig.frameSizes[pd_frameSize]
 
-        if pd_frameSize in Model.PreConfig.frameSizes:
-            mf = Model.Folder()
-            mf.path = pd
-            mf.frameSize = pd_frameSize
+            else:
+                print("Unsupported Frame Size")
 
-            dirs.append(mf)
+        elif pd == "e" or pd == "E":
+            return dirs
 
         else:
-            print("Unsupported Frame Size")
+            input("Unsupported Inputs")
             exit()
 
-    elif pd == "e" or pd == "E":
-        break
 
-    else:
-        input("Unsupported Inputs")
-        exit()
+def getFls(dirs:dict) -> dict:
+    fls = {}
 
+    for dk in dirs.keys():
+        try:
+            photos = os.listdir(dk)
 
-for d in dirs:
-    try:
-        photos = os.listdir(d)
+            for p in photos:
 
-        for photo in photos:
+                try:
+                    with open(dk + "\\" + p,  'rb') as image_file:
+                        my_image = Image(image_file)
+                except:
+                    print("Worng format:", p)
+                    break
 
-            with open(d + "\\" + photo, 'rb') as image_file:
-                my_image = Image(image_file)
+                if my_image.has_exif == True:
+                    mp = Model.Photo()
+                    mp.focal_length = my_image.focal_length
 
-    
-    except FileNotFoundError:
-        print("Worng Path: ", dir)
+                    if mp.focal_length_in_35mm_film == 0:
+                        mp.focal_length_in_35mm_film = round(mp.focal_length * float(dirs[dk]))
+                    
+                    if mp.focal_length_in_35mm_film not in fls.keys():
+                        fls[mp.focal_length_in_35mm_film] = 1
+                    
+                    elif mp.focal_length_in_35mm_film in fls.keys():
+                        fls[mp.focal_length_in_35mm_film] += 1
+                
+                # unnecessary print
+                print(p, my_image.has_exif, mp.focal_length, mp.focal_length_in_35mm_film)
 
-    
+        except FileNotFoundError:
+            print("Worng Path: ", dir)
+
+    return fls
