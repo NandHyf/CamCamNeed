@@ -9,7 +9,7 @@ class PreConfig:
     }
     fs_options = "\n[0]:4433 Medium Format(0.8x) \n[1]:Full Frame(1.0x) \n[2]:APS-C(1.5x) \n[3]:APS-C(1.6x) \n[4]:M43(2.0x) \n[5]:M43(1.5x)"
 
-    famousFLs = [14, 16, 20, 24, 28, 30, 35, 50, 65, 70, 85, 100, 135]
+    classicFLs = [14, 16, 20, 24, 28, 30, 35, 50, 65, 70, 85, 100, 135]
 
 
 # not used
