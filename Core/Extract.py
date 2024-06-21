@@ -68,5 +68,26 @@ def GetFls(dirs:dict) -> dict:
     print(fls)
     return fls
 
+
+def GetFlAndAp():
+    pass
+
+
+def GetImages():
+    pass
+
+
+def FromImageGetFl():
+    pass
+
+
+def FromImageGetAp():
+    pass
+
+
+def FromImageGetISO():
+    pass
+
+
 if __name__ == "__main__":
     GetFls(GetFolders())
