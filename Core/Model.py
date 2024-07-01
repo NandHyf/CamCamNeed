@@ -1,4 +1,4 @@
-class PreConfig:
+class PreConfig(object):
     frameSizes = {
         "0" : 0.8,
         "1" : 1.0,
@@ -14,12 +14,12 @@ class PreConfig:
 
 
 # not used
-class Folder:
+class Folder(object):
     path = ""
     frameSize = ""
 
 
-class Photo:
+class Photo(object):
     model = ""
     lens_model = ""
     datetime_original = ""
